@@ -1,2 +1,2 @@
 # image-builder
-Repo designed for building already provided Dockerfiles
+Repo that creates a docker image that will build other docker images, as well as publish them.
