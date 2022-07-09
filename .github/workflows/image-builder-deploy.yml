@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - uses: hmarr/debug-action@v2
 
     # - name: Log in to the Container registry
     #   uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
@@ -42,5 +43,5 @@ jobs:
       with:
         context: .
         push: true
-        tags: "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref }}"
+        tags: "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref.name }}"
         github-token: ${{ secrets.PACKAGE_UPLOAD_TOKEN }}
