@@ -13,8 +13,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       # if: ${{ github.ref != 'refs/heads/main' }}
-    - name: Build the image builder
-      run: docker build .
+    # - name: Build the image builder
+    #   run: docker build .
     
       if: ${{ github.ref == 'refs/heads/main' }}
     - name: Log in to the Container registry
@@ -37,4 +37,5 @@ jobs:
       with:
         context: .
         push: true
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         tags: "latest"
