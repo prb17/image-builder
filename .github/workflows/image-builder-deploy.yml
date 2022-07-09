@@ -20,7 +20,7 @@ jobs:
 
     # todo: have a way to commonize the following two if blocks
     # if this is a main branch push, use the 'latest' tag
-      if: github.ref_name == "main"
+      if: github.ref_name == 'main'
     - name: Build and push image builder (latest)
       uses: docker/build-push-action@v3
       with:
@@ -30,7 +30,7 @@ jobs:
         github-token: ${{ secrets.PACKAGE_UPLOAD_TOKEN }}
 
     # if this is a tag generated build, so use the provided tag
-      if: github.ref_name != "main"
+      if: github.ref_name != 'main'
     - name: Build and push image builder (tags)
       uses: docker/build-push-action@v3
       with:
