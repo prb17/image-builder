@@ -25,7 +25,7 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.PACKAGE_UPLOAD_TOKEN }}
 
-    # todo: have a way to commonize the following two if blocks
+    # todo: have a way to commonize the docker image TAG creation
     - name: Build and push image builder
       uses: docker/build-push-action@v3
       with:
