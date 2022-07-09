@@ -22,7 +22,7 @@ jobs:
       with:
         registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ secrets.PACKAGE_UPLOAD_TOKEN }}
 
       # if: github.ref == 'refs/heads/main'
     # - name: Extract metadata (tags, labels) for Docker
