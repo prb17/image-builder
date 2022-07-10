@@ -8,6 +8,14 @@ else
 	echo "The docker build context is: '${DOCKER_BUILD_CONTEXT}'";
 fi
 
+#debug the desired image name
+if [[ -z ${DOCKER_BUILD_IMAGE_NAME} ]]; then
+	echo "Cannot find env variable 'DOCKER_BUILD_IMAGE_NAME'";
+	exit -1;
+else
+	echo "The docker image to be built will be named: '${DOCKER_BUILD_IMAGE_NAME}'";
+fi
+
 #debug the desired image tag
 if [[ -z ${DOCKER_BUILD_TAG} ]]; then
 	echo "Cannot find env variable 'DOCKER_BUILD_TAG'";
@@ -24,11 +32,14 @@ else
 	echo "The docker registry to publish to: '${DOCKER_PUBLISH_REGISTRY}'";
 fi
 
-docker build ${DOCKER_BUILD_CONTEXT} -t ${DOCKER_BUILD_TAG}
+docker build ${DOCKER_BUILD_CONTEXT} -t ${DOCKER_BUILD_IMAGE_NAME}:${DOCKER_BUILD_TAG}
 
 # todo: check if we should publish the image first, if so, the publish to desired registry
 if [[ -n "${DOCKER_PUBLISH_REGISTRY}" ]]; then
-	echo "Publishing '${DOCKER_BUILD_TAG}' to '${DOCKER_PUBLISH_REGISTRY}'";
+	echo "Publishing '${DOCKER_PUBLISH_REGISTRY}/${DOCKER_BUILD_IMAGE_NAME}:${DOCKER_BUILD_TAG}'";
+	docker image tag ${DOCKER_BUILD_IMAGE_NAME}:${DOCKER_BUILD_TAG} ${DOCKER_PUBLISH_REGISTRY}/${DOCKER_BUILD_IMAGE_NAME}:${DOCKER_BUILD_TAG}
+	docker push ${DOCKER_PUBLISH_REGISTRY}/${DOCKER_BUILD_IMAGE_NAME}:${DOCKER_BUILD_TAG}
 fi
 
-docker rmi -f ${DOCKER_BUILD_TAG}
+docker rmi -f ${DOCKER_BUILD_IMAGE_NAME}:${DOCKER_BUILD_TAG} \
+	${DOCKER_PUBLISH_REGISTRY}/${DOCKER_BUILD_IMAGE_NAME}:${DOCKER_BUILD_TAG}
