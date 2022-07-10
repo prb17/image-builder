@@ -1,3 +1,4 @@
+[![Image Builder Build CI](https://github.com/prb17/image-builder/actions/workflows/image-builder-build.yml/badge.svg)](https://github.com/prb17/image-builder/actions/workflows/image-builder-build.yml)
 [![Image Builder latest](https://github.com/prb17/image-builder/actions/workflows/image-builder-deploy.yml/badge.svg)](https://github.com/prb17/image-builder/actions/workflows/image-builder-deploy.yml)
 
 # image-builder
