@@ -2,8 +2,8 @@ name: Image Builder Build CI
 
 on:
   push:
-    branches:
-      - '!main'
+    branches-ignore:
+      - 'main'
 
 jobs:
   build:
