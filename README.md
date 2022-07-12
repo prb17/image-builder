@@ -24,6 +24,7 @@ Example command run in workflow:
 
 Example command run locally:
 ```
+cd /path/to/Dockerfile;
  DOCKER_BUILD_CONTEXT=`pwd` && \
  DOCKER_BUILD_TAG=latest && \
  docker run -v /var/run/docker.sock:/var/run/docker.sock \
